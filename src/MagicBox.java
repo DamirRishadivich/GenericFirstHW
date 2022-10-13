@@ -1,8 +1,8 @@
 import java.util.Random;
 
 public class MagicBox<T> {
-    protected T[] box;
-    Random random = new Random();
+    T[] box;
+    protected Random random = new Random();
 
     public MagicBox(int maxItems) {
         this.box = (T[]) new Object[maxItems];
@@ -18,7 +18,7 @@ public class MagicBox<T> {
         return false;
     }
 
-    int pick() {
+    T pick() {
         int lenght = 0;
         for (int i = 0; i < box.length; i++) {
             if (box[i] != null) {
@@ -32,20 +32,22 @@ public class MagicBox<T> {
             }
         }
         int randomInt = random.nextInt(box.length + 1);
-        System.out.println(box[randomInt]);
-        return 0;
+        T randomElement = box[randomInt];
+        return randomElement;
     }
 
-    public void boxCapacity() {
-        System.out.print("[");
+    public String toString() {
+        StringBuilder string = new StringBuilder();
+        string.append("[");
         for (int i = 0; i < box.length; i++) {
             if (i == box.length - 1) {
-                System.out.print(box[i]);
+                string.append(box[i]);
             } else {
-                System.out.print(box[i] + " ");
+                string.append(box[i] + " ");
             }
         }
-        System.out.println("]");
+        string.append("]");
+        return string.toString();
     }
 
 }
